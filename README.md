@@ -95,7 +95,7 @@ bun run index.ts
 | Zhipu AI     | ✅     |
 | Cohere       | ✅     |
 | Fireworks.ai | ✅     |
-| Hugging Face | 🕝     |
+| Hugging Face | ✅     |
 | Replicate    | 🕝     |
 
 ## Documentation
