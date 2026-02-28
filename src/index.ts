@@ -14,6 +14,7 @@ type Provider =
   | 'anthropic'
   | 'zhipu'
   | 'cohere'
+  | 'fireworks'
   | Providers.Provider<unknown>
 
 /**
@@ -49,6 +50,13 @@ export type ProviderConfig<T extends Provider = 'openai'> = T extends 'openai'
       provider: 'cohere'
       /** The model to use with Cohere */
       model?: Providers.CohereProviderConfig['model']
+    }
+  : T extends 'fireworks'
+  ? {
+      /** The Fireworks.ai provider */
+      provider: 'fireworks'
+      /** The model to use with Fireworks.ai */
+      model?: Providers.FireworksProviderConfig['model']
     }
   : {
       /** The custom AI provider */
@@ -859,6 +867,8 @@ ${this.getHistory({to: route.to})
         return new Providers.ZhipuProvider({model: config.model})
       case 'cohere':
         return new Providers.CohereProvider({model: config.model})
+      case 'fireworks':
+        return new Providers.FireworksProvider({model: config.model})
 
       default:
         throw new Error(

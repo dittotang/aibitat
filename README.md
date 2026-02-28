@@ -94,7 +94,7 @@ bun run index.ts
 | Anthropic    | ✅     |
 | Zhipu AI     | ✅     |
 | Cohere       | ✅     |
-| Fireworks.ai | 🕝     |
+| Fireworks.ai | ✅     |
 | Hugging Face | 🕝     |
 | Replicate    | 🕝     |
 
