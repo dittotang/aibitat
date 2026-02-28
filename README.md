@@ -96,7 +96,7 @@ bun run index.ts
 | Cohere       | ✅     |
 | Fireworks.ai | ✅     |
 | Hugging Face | ✅     |
-| Replicate    | 🕝     |
+| Replicate    | ✅     |
 
 ## Documentation
 

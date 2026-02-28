@@ -16,6 +16,7 @@ type Provider =
   | 'cohere'
   | 'fireworks'
   | 'huggingface'
+  | 'replicate'
   | Providers.Provider<unknown>
 
 /**
@@ -65,6 +66,13 @@ export type ProviderConfig<T extends Provider = 'openai'> = T extends 'openai'
       provider: 'huggingface'
       /** The model to use with Hugging Face */
       model?: Providers.HuggingFaceProviderConfig['model']
+    }
+  : T extends 'replicate'
+  ? {
+      /** The Replicate provider */
+      provider: 'replicate'
+      /** The model to use with Replicate */
+      model?: Providers.ReplicateProviderConfig['model']
     }
   : {
       /** The custom AI provider */
@@ -879,6 +887,8 @@ ${this.getHistory({to: route.to})
         return new Providers.FireworksProvider({model: config.model})
       case 'huggingface':
         return new Providers.HuggingFaceProvider({model: config.model})
+      case 'replicate':
+        return new Providers.ReplicateProvider({model: config.model})
 
       default:
         throw new Error(

@@ -1,6 +1,7 @@
 export * from './ai-provider.ts'
 export * from './anthropic.ts'
 export * from './openai.ts'
+export * from './replicate.ts'
 export * from './huggingface.ts'
 export * from './fireworks.ts'
 export * from './cohere.ts'
