@@ -204,7 +204,7 @@ export function cachePlugin(
 ) {
   return {
     name: 'cache-plugin',
-    setup(aibitat: AIbitat) {
+    setup(aibitat: AIbitat<any>) {
       // Initialize cache store
       cacheStore = new CacheStore({
         ttlEnabled: options.ttlEnabled ?? false,

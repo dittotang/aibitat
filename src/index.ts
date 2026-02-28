@@ -9,7 +9,7 @@ export * from './providers'
 /**
  * Available providers
  */
-type Provider = 'openai' | 'anthropic' | Providers.Provider<unknown>
+type Provider = 'openai' | 'anthropic' | 'zhipu' | Providers.Provider<unknown>
 
 /**
  * The provider config to use for the AI.
@@ -30,6 +30,13 @@ export type ProviderConfig<T extends Provider = 'openai'> = T extends 'openai'
        * @default 'claude-2'
        */
       model?: Providers.AnthropicProviderConfig['model']
+    }
+  : T extends 'zhipu'
+  ? {
+      /** The Zhipu AI provider */
+      provider: 'zhipu'
+      /** The model to use with Zhipu AI */
+      model?: Providers.ZhipuProviderConfig['model']
     }
   : {
       /** The custom AI provider */
@@ -569,7 +576,6 @@ export class AIbitat<T extends Provider> {
     // if the channel has a provider, use that otherwise
     // use the GPT-4 because it has a better reasoning
     const provider = this.getProviderForConfig({
-      // @ts-expect-error
       model: 'gpt-4',
       ...this.defaultProvider,
       ...channelConfig,
@@ -827,7 +833,7 @@ ${this.getHistory({to: route.to})
    *
    * @param config The provider configuration.
    */
-  private getProviderForConfig<T extends Provider>(config: ProviderConfig<T>) {
+  private getProviderForConfig(config: any) {
     if (typeof config.provider === 'object') {
       return config.provider
     }
@@ -836,7 +842,9 @@ ${this.getHistory({to: route.to})
       case 'openai':
         return new Providers.OpenAIProvider({model: config.model})
       case 'anthropic':
-        return new Providers.AnthropicProvider({model: config.model})
+        return new Providers.AnthropicMessagesProvider({model: config.model})
+      case 'zhipu':
+        return new Providers.ZhipuProvider({model: config.model})
 
       default:
         throw new Error(
