@@ -93,7 +93,7 @@ bun run index.ts
 | OpenAI       | ✅     |
 | Anthropic    | ✅     |
 | Zhipu AI     | ✅     |
-| Cohere       | 🕝     |
+| Cohere       | ✅     |
 | Fireworks.ai | 🕝     |
 | Hugging Face | 🕝     |
 | Replicate    | 🕝     |

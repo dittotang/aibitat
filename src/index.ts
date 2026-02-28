@@ -9,7 +9,12 @@ export * from './providers'
 /**
  * Available providers
  */
-type Provider = 'openai' | 'anthropic' | 'zhipu' | Providers.Provider<unknown>
+type Provider =
+  | 'openai'
+  | 'anthropic'
+  | 'zhipu'
+  | 'cohere'
+  | Providers.Provider<unknown>
 
 /**
  * The provider config to use for the AI.
@@ -37,6 +42,13 @@ export type ProviderConfig<T extends Provider = 'openai'> = T extends 'openai'
       provider: 'zhipu'
       /** The model to use with Zhipu AI */
       model?: Providers.ZhipuProviderConfig['model']
+    }
+  : T extends 'cohere'
+  ? {
+      /** The Cohere provider */
+      provider: 'cohere'
+      /** The model to use with Cohere */
+      model?: Providers.CohereProviderConfig['model']
     }
   : {
       /** The custom AI provider */
@@ -845,6 +857,8 @@ ${this.getHistory({to: route.to})
         return new Providers.AnthropicMessagesProvider({model: config.model})
       case 'zhipu':
         return new Providers.ZhipuProvider({model: config.model})
+      case 'cohere':
+        return new Providers.CohereProvider({model: config.model})
 
       default:
         throw new Error(
