@@ -88,15 +88,18 @@ bun run index.ts
 
 ### Providers
 
-| Provider     | Status |
-| ------------ | ------ |
-| OpenAI       | ✅     |
-| Anthropic    | ✅     |
-| Zhipu AI     | ✅     |
-| Cohere       | ✅     |
-| Fireworks.ai | ✅     |
-| Hugging Face | ✅     |
-| Replicate    | ✅     |
+| Provider        | Status |
+| --------------- | ------ |
+| OpenAI          | ✅     |
+| Anthropic       | ✅     |
+| Zhipu AI        | ✅     |
+| Cohere          | ✅     |
+| Fireworks.ai    | ✅     |
+| Hugging Face    | ✅     |
+| Replicate       | ✅     |
+| Moonshot (Kimi) | ✅     |
+| Qianwen         | ✅     |
+| MinMax          | ✅     |
 
 ## Documentation
 

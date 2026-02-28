@@ -17,6 +17,9 @@ type Provider =
   | 'fireworks'
   | 'huggingface'
   | 'replicate'
+  | 'moonshot'
+  | 'qianwen'
+  | 'minmax'
   | Providers.Provider<unknown>
 
 /**
@@ -73,6 +76,27 @@ export type ProviderConfig<T extends Provider = 'openai'> = T extends 'openai'
       provider: 'replicate'
       /** The model to use with Replicate */
       model?: Providers.ReplicateProviderConfig['model']
+    }
+  : T extends 'moonshot'
+  ? {
+      /** The Moonshot (Kimi) provider */
+      provider: 'moonshot'
+      /** The model to use with Moonshot */
+      model?: Providers.MoonshotProviderConfig['model']
+    }
+  : T extends 'qianwen'
+  ? {
+      /** The Qianwen provider */
+      provider: 'qianwen'
+      /** The model to use with Qianwen */
+      model?: Providers.QianwenProviderConfig['model']
+    }
+  : T extends 'minmax'
+  ? {
+      /** The MinMax provider */
+      provider: 'minmax'
+      /** The model to use with MinMax */
+      model?: Providers.MinMaxProviderConfig['model']
     }
   : {
       /** The custom AI provider */
@@ -889,6 +913,12 @@ ${this.getHistory({to: route.to})
         return new Providers.HuggingFaceProvider({model: config.model})
       case 'replicate':
         return new Providers.ReplicateProvider({model: config.model})
+      case 'moonshot':
+        return new Providers.MoonshotProvider({model: config.model})
+      case 'qianwen':
+        return new Providers.QianwenProvider({model: config.model})
+      case 'minmax':
+        return new Providers.MinMaxProvider({model: config.model})
 
       default:
         throw new Error(
